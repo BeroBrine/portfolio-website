@@ -1,6 +1,6 @@
 import { IRoute } from "./Interfaces";
-import { Project, Hobbies, Linux } from "../Components/Navbar/index";
-import { Video } from "../Components";
+import { Project, Hobbies, Linux } from "../components/Navbar/index";
+import { Video } from "../components";
 
 const useCustomRoutes = (): IRoute[] => {
 	return [
