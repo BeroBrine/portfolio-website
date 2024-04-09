@@ -1,11 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import useCustomRoutes from "./hooks/CustomRoutes";
 import { IRoute } from "./hooks/Interfaces";
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import Cursor from "./components/Cursor";
-
 function App() {
 	const customRoute = useCustomRoutes();
 	return (

@@ -1,22 +1,24 @@
 import { motion } from "framer-motion";
-import {
-	LegacyRef,
-	MouseEventHandler,
-	ReactNode,
-	useRef,
-	useState,
-} from "react";
+import { ReactNode, useRef, useState } from "react";
 
 const Magnetic = ({ children }: { children: ReactNode }) => {
-	const ref = useRef(null);
+	const ref = useRef<HTMLDivElement>(null);
 	const [postion, setPosition] = useState({ x: 0, y: 0 });
 
-	const handleMouse = (e: MouseEvent) => {
+	const handleMouse = (e: React.MouseEvent) => {
 		const { clientX, clientY } = e;
-		const { height, width, left, top } = ref.current?.getBoundingClientRect();
-		const middleX = clientX - (left + width / 2);
-		const middleY = clientY - (top + height / 2);
-		setPosition({ x: middleX * 0.2, y: middleY * 0.2 });
+		const clientRect = ref?.current?.getBoundingClientRect();
+
+		if (
+			clientRect?.top &&
+			clientRect?.left &&
+			clientRect?.height &&
+			clientRect?.width
+		) {
+			const middleX = clientX - (clientRect.left + clientRect.width / 2);
+			const middleY = clientY - (clientRect.top + clientRect.height / 2);
+			setPosition({ x: middleX * 0.2, y: middleY * 0.2 });
+		}
 	};
 
 	const reset = () => {

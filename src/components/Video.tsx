@@ -1,5 +1,5 @@
 import GithubLogo from "./svgs/GithubLogo";
-import React, { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import bgVid from "../assets/myPics/bgVid.mp4";
 import Navbar from "./Navbar";
 import Cursor from "./Cursor";
@@ -7,9 +7,10 @@ import Magnetic from "./Magnetic";
 
 const Video = () => {
 	const ref = useRef<HTMLDivElement>(null);
+	const [cursorSize, setCursorSize] = useState(20);
 	return (
-		<div id="container">
-			<Cursor stickyElement={ref} />
+		<div id="container" className="">
+			<Cursor stickyElement={ref} cursorsize={cursorSize} />
 			<Navbar homepage={true} showByDefault={true} />
 			<div id="hello">
 				<video
@@ -21,22 +22,40 @@ const Video = () => {
 					<source src={bgVid} type="video/mp4" />
 				</video>
 			</div>
-			<div className="  flex-col flex justify-center items-center h-screen text-white  mx-auto">
-				<span className="text-6xl font-jetBrains font-semibold">
-					Hi.&#128075;
-				</span>
-				<span className="text-6xl font-jetBrains font-semibold">
-					I'm Abhishek
-				</span>
-
-				<span className="type-fruit text-6xl font-jetBrains font-semibold"></span>
-
+			<div className=" flex-col flex justify-center items-center h-screen text-white  mx-auto">
+				<Magnetic>
+					<span
+						onMouseEnter={() => setCursorSize(80)}
+						onMouseLeave={() => setCursorSize(20)}
+						className="text-6xl cursor-none font-jetBrains font-semibold"
+					>
+						Hi.&#128075;
+					</span>
+				</Magnetic>
+				<Magnetic>
+					<span
+						onMouseEnter={() => setCursorSize(80)}
+						onMouseLeave={() => setCursorSize(20)}
+						className="text-6xl cursor-none font-jetBrains font-semibold"
+					>
+						I'm Abhishek
+					</span>
+				</Magnetic>
+				<Magnetic>
+					<span
+						onMouseEnter={() => setCursorSize(80)}
+						onMouseLeave={() => setCursorSize(20)}
+						className="type-fruit cursor-none text-6xl font-jetBrains font-semibold"
+					></span>
+				</Magnetic>
 				<Magnetic>
 					<div
+						onMouseEnter={() => setCursorSize(80)}
+						onMouseLeave={() => setCursorSize(20)}
 						ref={ref}
 						className=" items-center relative    w-40 h-40 flex justify-center py-2"
 					>
-						<GithubLogo className={"h-16  w-16 fill-white cursor-pointer "} />
+						<GithubLogo className={"h-16  w-16 fill-white cursor-none "} />
 					</div>
 				</Magnetic>
 			</div>

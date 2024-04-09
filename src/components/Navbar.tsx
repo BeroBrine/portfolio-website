@@ -35,7 +35,7 @@ const Navbar = ({
 			<div
 				className={`${
 					scrolling
-						? "px-1 m-5 grid grid-cols-3  my-3 z-20 flex justify-between overflow-hidden   rounded-xl border-white border-2 border-opacity-10 backdrop-blur-lg opacity-100"
+						? "px-1 m-5 grid grid-cols-3  my-3 z-20  justify-between overflow-hidden   rounded-xl border-white border-2 border-opacity-10 backdrop-blur-lg opacity-100"
 						: "-m-20 opacity-0"
 				} flex justify-between  duration-1000`}
 			>
@@ -50,9 +50,15 @@ const Navbar = ({
 					</div>
 				</div>
 				{homepage ? (
-					<div className="flex justify-center items-center">
+					<div className="flex flex-col justify-center items-center">
 						<span className="font-jetBrains text-2xl  font-bold text-white flex items-center justify-center">
 							Fullstack Developer
+						</span>
+
+						<span className="font-jetBrains font-bold text-white flex items-center justify-center">
+							abhishekrana8818<span className="text-yellow-300">[at]</span>
+							proton
+							<span className="text-yellow-300">[dot]</span>me
 						</span>
 					</div>
 				) : null}
