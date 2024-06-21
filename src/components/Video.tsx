@@ -12,22 +12,20 @@ const Video = () => {
 		<div id="container" className="">
 			<Cursor stickyElement={ref} cursorsize={cursorSize} />
 			<Navbar homepage={true} showByDefault={true} />
-			<div id="hello">
-				<video
-					id="video"
-					className="h-[calc(100dvh)] w-full absolute object-cover -z-10 "
-					autoPlay
-					loop
-				>
-					<source src={bgVid} type="video/mp4" />
-				</video>
-			</div>
+			<video
+				id="video"
+				className="h-screen w-full absolute object-cover -z-10 "
+				autoPlay
+				loop
+			>
+				<source src={bgVid} type="video/mp4" />
+			</video>
 			<div className=" flex-col flex justify-center items-center h-screen text-white  mx-auto">
 				<Magnetic>
 					<span
 						onMouseEnter={() => setCursorSize(80)}
 						onMouseLeave={() => setCursorSize(20)}
-						className="text-6xl cursor-none font-jetBrains font-semibold"
+						className="text-2xl md:text-6xl cursor-none font-jetBrains font-semibold"
 					>
 						Hi.&#128075;
 					</span>
@@ -36,7 +34,7 @@ const Video = () => {
 					<span
 						onMouseEnter={() => setCursorSize(80)}
 						onMouseLeave={() => setCursorSize(20)}
-						className="text-6xl cursor-none font-jetBrains font-semibold"
+						className="text-2xl md:text-6xl cursor-none font-jetBrains font-semibold"
 					>
 						I'm Abhishek
 					</span>
@@ -45,7 +43,7 @@ const Video = () => {
 					<span
 						onMouseEnter={() => setCursorSize(80)}
 						onMouseLeave={() => setCursorSize(20)}
-						className="type-fruit cursor-none text-6xl font-jetBrains font-semibold"
+						className="type-fruit cursor-none text-2xl md:text-6xl font-jetBrains font-semibold"
 					></span>
 				</Magnetic>
 				<Magnetic>

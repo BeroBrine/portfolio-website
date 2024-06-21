@@ -33,11 +33,10 @@ const Navbar = ({
 	return (
 		<div id="navbar" className="fixed top-0 w-full z-10">
 			<div
-				className={`${
-					scrolling
+				className={`${scrolling
 						? "px-1 m-5 grid grid-cols-3  my-3 z-20  justify-between overflow-hidden   rounded-xl border-white border-2 border-opacity-10 backdrop-blur-lg opacity-100"
 						: "-m-20 opacity-0"
-				} flex justify-between  duration-1000`}
+					} flex justify-between  duration-1000`}
 			>
 				<div className=" flex items-center justify-left">
 					<img
@@ -49,6 +48,7 @@ const Navbar = ({
 						Abhishek Rana
 					</div>
 				</div>
+
 				{homepage ? (
 					<div className="flex flex-col justify-center items-center">
 						<span className="font-jetBrains text-2xl  font-bold text-white flex items-center justify-center">
