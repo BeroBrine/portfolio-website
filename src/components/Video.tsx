@@ -25,7 +25,7 @@ const Video = () => {
 					<span
 						onMouseEnter={() => setCursorSize(80)}
 						onMouseLeave={() => setCursorSize(20)}
-						className="text-2xl md:text-6xl cursor-none font-jetBrains font-semibold"
+						className="text-2xl sm:text-4xl md:text-6xl cursor-none font-jetBrains font-semibold"
 					>
 						Hi.&#128075;
 					</span>
@@ -34,7 +34,7 @@ const Video = () => {
 					<span
 						onMouseEnter={() => setCursorSize(80)}
 						onMouseLeave={() => setCursorSize(20)}
-						className="text-2xl md:text-6xl cursor-none font-jetBrains font-semibold"
+						className="text-2xl sm:text-4xl md:text-6xl cursor-none font-jetBrains font-semibold"
 					>
 						I'm Abhishek
 					</span>
@@ -43,7 +43,7 @@ const Video = () => {
 					<span
 						onMouseEnter={() => setCursorSize(80)}
 						onMouseLeave={() => setCursorSize(20)}
-						className="type-fruit cursor-none text-2xl md:text-6xl font-jetBrains font-semibold"
+						className="type-fruit cursor-none text-2xl sm:text-4xl md:text-6xl font-jetBrains font-semibold"
 					></span>
 				</Magnetic>
 				<Magnetic>
@@ -51,7 +51,7 @@ const Video = () => {
 						onMouseEnter={() => setCursorSize(80)}
 						onMouseLeave={() => setCursorSize(20)}
 						ref={ref}
-						className=" items-center relative    w-40 h-40 flex justify-center py-2"
+						className=" items-center relative w-40 h-40 flex justify-center py-2"
 					>
 						<GithubLogo className={"h-16  w-16 fill-white cursor-none "} />
 					</div>
