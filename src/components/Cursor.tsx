@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef, RefObject } from "react";
+
 import {
 	animate,
 	motion,
@@ -25,7 +26,7 @@ const Cursor = ({
 		x: useMotionValue(0),
 		y: useMotionValue(0),
 	};
-	const smoothOption = { damping: 20, stiffness: 300, mass: 0.5 };
+	const smoothOption = { damping: 20, stiffness: 200, mass: 0.2 };
 	const smoothMouse = {
 		x: useSpring(mousePos.x, smoothOption),
 		y: useSpring(mousePos.y, smoothOption),

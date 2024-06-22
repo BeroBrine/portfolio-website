@@ -1,16 +1,34 @@
 import GithubLogo from "./svgs/GithubLogo";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import bgVid from "../assets/myPics/bgVid.mp4";
 import Navbar from "./Navbar";
 import Cursor from "./Cursor";
 import Magnetic from "./Magnetic";
+import { useIdle } from "react-use";
 
 const Video = () => {
 	const ref = useRef<HTMLDivElement>(null);
-	const [cursorSize, setCursorSize] = useState(20);
+	const idle = useIdle(2000);
+	const [cursorSize, setCursorSize] = useState<number>(20);
+	const [renderCursor, setRenderCursor] = useState<boolean>(false);
+
+	useEffect(() => {
+		window.addEventListener("mousemove", () => {
+			setRenderCursor(true);
+		});
+
+		return () => {
+			window.removeEventListener("mousemove", () => {
+				setRenderCursor(false);
+			});
+		};
+	}, []);
+
 	return (
 		<div id="container" className="">
-			<Cursor stickyElement={ref} cursorsize={cursorSize} />
+			{renderCursor && !idle ? (
+				<Cursor stickyElement={ref} cursorsize={cursorSize} />
+			) : null}
 			<Navbar homepage={true} showByDefault={true} />
 			<video
 				id="video"
@@ -44,7 +62,7 @@ const Video = () => {
 						onMouseEnter={() => setCursorSize(80)}
 						onMouseLeave={() => setCursorSize(20)}
 						className="type-fruit cursor-none text-2xl sm:text-4xl md:text-6xl font-jetBrains font-semibold"
-					></span>
+					/>
 				</Magnetic>
 				<Magnetic>
 					<div

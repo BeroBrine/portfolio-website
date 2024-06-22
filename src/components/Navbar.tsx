@@ -7,7 +7,6 @@ const Navbar = ({
 	homepage,
 }: { showByDefault: boolean; homepage: boolean }) => {
 	const [scrolling, setScrolling] = useState(false);
-
 	useEffect(() => {
 		if (showByDefault) return setScrolling(true);
 
@@ -33,10 +32,11 @@ const Navbar = ({
 	return (
 		<div id="navbar" className="fixed top-0 w-full z-10">
 			<div
-				className={`${scrolling
-					? "px-1 sm:px-2 m-3 my-3 z-20 justify-between overflow-hidden rounded-xl border-white border-2 border-opacity-10 backdrop-blur-lg opacity-100"
-					: "-m-20 opacity-0"
-					} flex flex-col md:flex-row items-center justify-between duration-1000 p-3`}
+				className={`${
+					scrolling
+						? "px-1 sm:px-2 m-3 my-3 z-20 justify-between overflow-hidden rounded-xl border-white border-2 border-opacity-10 backdrop-blur-lg opacity-100"
+						: "-m-20 opacity-0"
+				} flex flex-col md:flex-row items-center justify-between duration-1000 p-3`}
 			>
 				<div className="flex justify-center mb-4 md:mb-0 items-center">
 					<img
@@ -52,7 +52,7 @@ const Navbar = ({
 				{homepage && (
 					<div className="flex flex-col mb-2 md:mb-0 justify-center items-center">
 						<span className="font-jetBrains sm:text-2xl font-bold text-white flex items-center justify-center">
-							Fullstack Developer
+							Fullstack <span className="text-yellow-300 pl-2">Dev</span>eloper
 						</span>
 
 						<span className="font-jetBrains font-bold text-white flex items-center justify-center">
@@ -64,9 +64,16 @@ const Navbar = ({
 				)}
 
 				<div className="flex relative items-center justify-center">
-					<Button id={"projects"} title={"[Projects]"} className="text-base sm:text-xl px-1.5" />
-					<Button id={"hobbies"} title={"[Hobbies]"} className="text-base sm:text-xl px-1.5" />
-					<Button id={"linux"} title={"[Linux]"} className="text-base sm:text-xl px-1.5" />
+					<Button
+						id={"projects"}
+						title={"[Projects]"}
+						className="text-base sm:text-xl px-1.5"
+					/>
+					<Button
+						id={"linux"}
+						title={"[Linux]"}
+						className="text-base sm:text-xl px-1.5"
+					/>
 				</div>
 			</div>
 		</div>

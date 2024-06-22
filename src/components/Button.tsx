@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { cn } from '../lib/utils'
+import { cn } from "../lib/utils";
 
 interface IButton {
 	id: string;
@@ -19,7 +19,10 @@ const Button = ({ id, title, className }: IButton) => {
 			id={id}
 			onClick={handleClick}
 			type="button"
-			className={cn("text-white px-3 py-2 rounded  tracking-wider  outline-none text-xl font-semibold font-jetBrains", className)}
+			className={cn(
+				"text-white px-3 py-2 rounded  tracking-wider  outline-none text-xl font-semibold font-jetBrains",
+				className,
+			)}
 		>
 			{title}
 		</button>
