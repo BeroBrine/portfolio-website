@@ -1,5 +1,5 @@
 import { IRoute } from "./Interfaces";
-import { Project, Hobbies, Linux } from "../components/Navbar/index";
+import { Project, Linux } from "../components/Navbar/index";
 import { Video } from "../components";
 
 const useCustomRoutes = (): IRoute[] => {
@@ -18,12 +18,6 @@ const useCustomRoutes = (): IRoute[] => {
 
 		{
 			key: 3,
-			path: "/hobbies",
-			element: Hobbies,
-		},
-
-		{
-			key: 4,
 			path: "/linux",
 			element: Linux,
 		},

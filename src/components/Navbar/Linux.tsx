@@ -1,11 +1,10 @@
 import LapMockup from "../LapMockup";
 import Navbar from "../Navbar";
 
-
 const Linux = () => {
 	return (
 		<div>
-			<Navbar homepage={false} showByDefault={false} />
+			<Navbar homepage={false} />
 			<img
 				className="absolute object-cover h-screen w-full -z-10 blur-sm"
 				src="/cyberpunk_city.jpeg"
@@ -15,5 +14,4 @@ const Linux = () => {
 		</div>
 	);
 };
-
 export default Linux;

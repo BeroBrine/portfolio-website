@@ -1,35 +1,17 @@
 import GithubLogo from "./svgs/GithubLogo";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import bgVid from "../assets/myPics/bgVid.mp4";
 import Navbar from "./Navbar";
 import Cursor from "./Cursor";
 import Magnetic from "./Magnetic";
-import { useIdle } from "react-use";
 
 const Video = () => {
 	const ref = useRef<HTMLDivElement>(null);
-	const idle = useIdle(2000);
 	const [cursorSize, setCursorSize] = useState<number>(20);
-	const [renderCursor, setRenderCursor] = useState<boolean>(false);
-
-	useEffect(() => {
-		window.addEventListener("mousemove", () => {
-			setRenderCursor(true);
-		});
-
-		return () => {
-			window.removeEventListener("mousemove", () => {
-				setRenderCursor(false);
-			});
-		};
-	}, []);
 
 	return (
 		<div id="container" className="">
-			{renderCursor && !idle ? (
-				<Cursor stickyElement={ref} cursorsize={cursorSize} />
-			) : null}
-			<Navbar homepage={true} showByDefault={true} />
+			<Navbar homepage={true} />
 			<video
 				id="video"
 				className="h-screen w-full absolute object-cover -z-10 "
@@ -71,9 +53,16 @@ const Video = () => {
 						ref={ref}
 						className=" items-center relative w-40 h-40 flex justify-center py-2"
 					>
-						<GithubLogo className={"h-16  w-16 fill-white cursor-none "} />
+						<GithubLogo
+							link={"https://github.com/BeroBrine"}
+							className={"h-16  w-16 fill-white cursor-none "}
+						/>
 					</div>
 				</Magnetic>
+				<Cursor stickyElement={ref} cursorsize={cursorSize} />
+			</div>
+			<div className="h-12 w-full font-jetBrains font-semibold flex justify-center items-center bg-black text-white">
+				{"Made with love by Abhishek"}
 			</div>
 		</div>
 	);

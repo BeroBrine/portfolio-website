@@ -2,13 +2,13 @@ import { LegacyRef, forwardRef } from "react";
 
 interface IProps {
 	className: string;
+	link: string;
 }
 
 const GithubLogo = forwardRef(
-	({ className }: IProps, ref: LegacyRef<HTMLDivElement>) => {
+	({ className, link }: IProps, ref: LegacyRef<HTMLDivElement>) => {
 		const handleClick = () => {
-			//@ts-ignore
-			window.open("https://github.com/BeroBrine", "_blank").focus();
+			window.open(`${link}`, "_blank")?.focus();
 		};
 		console.log(className);
 		return (

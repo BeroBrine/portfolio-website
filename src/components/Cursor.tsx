@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, RefObject } from "react";
+import { useEffect, useState, useRef, type RefObject } from "react";
 
 import {
 	animate,
@@ -7,6 +7,8 @@ import {
 	useMotionValue,
 	useSpring,
 } from "framer-motion";
+
+import { useIdle } from "react-use";
 
 interface ITemplate {
 	rotate: string;
@@ -21,7 +23,21 @@ const Cursor = ({
 	const [isHovered, setIsHovered] = useState(false);
 	const cursorSize = cursorsize;
 	const cursorRef = useRef<HTMLDivElement>(null);
+	const idle = useIdle(2000);
 
+	const [renderCursor, setRenderCursor] = useState<boolean>(false);
+
+	useEffect(() => {
+		window.addEventListener("mousemove", () => {
+			setRenderCursor(true);
+		});
+
+		return () => {
+			window.removeEventListener("mousemove", () => {
+				setRenderCursor(false);
+			});
+		};
+	}, []);
 	const mousePos = {
 		x: useMotionValue(0),
 		y: useMotionValue(0),
@@ -117,20 +133,23 @@ const Cursor = ({
 	const template = ({ rotate, scaleX, scaleY }: ITemplate) => {
 		return `rotate(${rotate}) scaleX(${scaleX}) scaleY(${scaleY})`;
 	};
-	return (
-		<motion.div
-			transformTemplate={template}
-			animate={{ width: cursorSize, height: cursorSize }}
-			ref={cursorRef}
-			style={{
-				left: smoothMouse.x,
-				top: smoothMouse.y,
-				scaleX: scale.x,
-				scaleY: scale.y,
-			}}
-			className={`pointer-events-none bg-yellow-200  absolute  rounded-full top-0 left-0 z-50 mix-blend-difference`}
-		></motion.div>
-	);
+
+	if (renderCursor && !idle)
+		return (
+			<motion.div
+				transformTemplate={template}
+				animate={{ width: cursorSize, height: cursorSize }}
+				ref={cursorRef}
+				style={{
+					left: smoothMouse.x,
+					top: smoothMouse.y,
+					scaleX: scale.x,
+					scaleY: scale.y,
+				}}
+				className={`pointer-events-none bg-yellow-200  absolute  rounded-full top-0 left-0 z-50 mix-blend-difference`}
+			></motion.div>
+		);
+	else return <div></div>;
 };
 
 export default Cursor;

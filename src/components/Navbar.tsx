@@ -2,14 +2,10 @@ import { useEffect, useState } from "react";
 import small_dimension from "../assets/myPics/small_dimension.jpg";
 import Button from "./Button";
 
-const Navbar = ({
-	showByDefault,
-	homepage,
-}: { showByDefault: boolean; homepage: boolean }) => {
+const Navbar = ({ homepage }: { homepage: boolean }) => {
 	const [scrolling, setScrolling] = useState(false);
 	useEffect(() => {
-		if (showByDefault) return setScrolling(true);
-
+		!homepage ? setScrolling(true) : setScrolling(false);
 		document.addEventListener("scroll", () => {
 			console.log(document.scrollingElement?.scrollTop);
 			if (document.scrollingElement?.scrollTop != 0 && !scrolling)
@@ -33,7 +29,7 @@ const Navbar = ({
 		<div id="navbar" className="fixed top-0 w-full z-10">
 			<div
 				className={`${
-					scrolling
+					!scrolling
 						? "px-1 sm:px-2 m-3 my-3 z-20 justify-between overflow-hidden rounded-xl border-white border-2 border-opacity-10 backdrop-blur-lg opacity-100"
 						: "-m-20 opacity-0"
 				} flex flex-col md:flex-row items-center justify-between duration-1000 p-3`}
