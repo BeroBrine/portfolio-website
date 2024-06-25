@@ -32,9 +32,17 @@ const Cursor = ({
 			setRenderCursor(true);
 		});
 
+		window.addEventListener("scroll", () => {
+			if (document.scrollingElement?.scrollTop) setRenderCursor(false);
+		});
+
 		return () => {
 			window.removeEventListener("mousemove", () => {
 				setRenderCursor(false);
+			});
+
+			window.removeEventListener("scroll", () => {
+				if (document.scrollingElement?.scrollTop) setRenderCursor(false);
 			});
 		};
 	}, []);

@@ -6,8 +6,8 @@ const Navbar = ({ homepage }: { homepage: boolean }) => {
 	const [scrolling, setScrolling] = useState(false);
 	useEffect(() => {
 		!homepage ? setScrolling(true) : setScrolling(false);
+
 		document.addEventListener("scroll", () => {
-			console.log(document.scrollingElement?.scrollTop);
 			if (document.scrollingElement?.scrollTop != 0 && !scrolling)
 				return setScrolling(true);
 			if (document.scrollingElement?.scrollTop == 0) {
