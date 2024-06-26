@@ -159,7 +159,7 @@ const Cursor = ({
 					scaleX: scale.x,
 					scaleY: scale.y,
 				}}
-				className={`pointer-events-none hidden sm:flex bg-yellow-200  absolute  rounded-full top-0 left-0 z-50 mix-blend-difference`}
+				className={`pointer-events-none hidden lg:flex bg-yellow-200  absolute  rounded-full top-0 left-0 z-50 mix-blend-difference`}
 			></motion.div>
 		);
 	else return <div></div>;

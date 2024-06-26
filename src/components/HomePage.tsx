@@ -10,6 +10,10 @@ import { useGSAP } from "@gsap/react";
 const HomePage = () => {
 	const githubRef = useRef<HTMLDivElement>(null);
 	const textDiv = useRef<HTMLDivElement>(null);
+	const parentDiv = useRef<HTMLDivElement>(null);
+	const parentRef = useRef<HTMLDivElement>(null);
+	const childRef = useRef<HTMLDivElement>(null);
+
 	const [cursorSize, setCursorSize] = useState<number>(15);
 
 	useGSAP(
@@ -21,12 +25,25 @@ const HomePage = () => {
 				scale: 1.11,
 				stagger: 0.8,
 			});
+
+			gsap.to(childRef.current, {
+				transform: "translate(-140%)",
+				scrollTrigger: {
+					trigger: parentRef.current,
+					start: "top 0%",
+					end: "top -100%",
+					scrub: 2,
+					pin: true,
+					markers: true,
+				},
+			});
 		},
+
 		{ scope: textDiv },
 	);
 
 	return (
-		<div id="container" className="">
+		<div ref={parentDiv} id="" className="container">
 			<Navbar homepage={true} />
 			<video
 				id="video"
@@ -80,15 +97,29 @@ const HomePage = () => {
 				</Magnetic>
 				<Cursor stickyElement={githubRef} cursorsize={cursorSize} />
 			</div>
-			<div className="h-12 w-full p-2 flex flex-col justify-center items-center bg-black text-white">
-				<span className="font-jetBrains font-semibold text-white">
-					{"Made With Love By Abhishek"}
-				</span>
-
-				<span className="font-jetBrains font-semibold text-white">
-					{"Built Using React, GSAP, Framer"}
-				</span>
+			{
+				//      <div className="h-12 w-full p-2 flex flex-col justify-center items-center bg-black text-white">
+				// 	<span className="font-jetBrains font-semibold text-white">
+				// 		{"Made With Love By Abhishek"}
+				// 	</span>
+				//
+				// 	<span className="font-jetBrains font-semibold text-white">
+				// 		{"Built Using React, GSAP, Framer"}
+				// 	</span>
+				// </div>
+			}
+			<div
+				ref={parentRef}
+				className="h-screen w-screen bg-black overflow-x-hidden"
+			>
+				<div
+					ref={childRef}
+					className="grid place-items-center font-jetBrains text-[25vw]  text-white font-bold"
+				>
+					REIMAGINE
+				</div>
 			</div>
+			<div className="h-screen w-screen bg-black overflow-x-hidden"></div>
 		</div>
 	);
 };
