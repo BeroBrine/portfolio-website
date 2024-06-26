@@ -1,13 +1,13 @@
 import { IRoute } from "./Interfaces";
 import { Project, Linux } from "../components/Navbar/index";
-import { Video } from "../components";
+import { HomePage } from "../components";
 
 const useCustomRoutes = (): IRoute[] => {
 	return [
 		{
 			key: 1,
 			path: "/",
-			element: Video,
+			element: HomePage,
 		},
 
 		{

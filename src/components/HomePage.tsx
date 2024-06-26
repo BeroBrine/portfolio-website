@@ -4,10 +4,26 @@ import bgVid from "../assets/myPics/bgVid.mp4";
 import Navbar from "./Navbar";
 import Cursor from "./Cursor";
 import Magnetic from "./Magnetic";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
-const Video = () => {
-	const ref = useRef<HTMLDivElement>(null);
-	const [cursorSize, setCursorSize] = useState<number>(20);
+const HomePage = () => {
+	const githubRef = useRef<HTMLDivElement>(null);
+	const textDiv = useRef<HTMLDivElement>(null);
+	const [cursorSize, setCursorSize] = useState<number>(15);
+
+	useGSAP(
+		() => {
+			gsap.from([textDiv.current, githubRef.current], {
+				opacity: 0,
+				duration: 2,
+				y: 40,
+				scale: 1.11,
+				stagger: 0.8,
+			});
+		},
+		{ scope: textDiv },
+	);
 
 	return (
 		<div id="container" className="">
@@ -20,7 +36,10 @@ const Video = () => {
 			>
 				<source src={bgVid} type="video/mp4" />
 			</video>
-			<div className=" flex-col flex justify-center items-center h-screen text-white  mx-auto">
+			<div
+				ref={textDiv}
+				className=" opacity-1 flex-col flex justify-center items-center h-screen text-white  mx-auto"
+			>
 				<Magnetic>
 					<span
 						onMouseEnter={() => setCursorSize(80)}
@@ -50,7 +69,7 @@ const Video = () => {
 					<div
 						onMouseEnter={() => setCursorSize(80)}
 						onMouseLeave={() => setCursorSize(20)}
-						ref={ref}
+						ref={githubRef}
 						className=" items-center relative w-40 h-40 flex justify-center py-2"
 					>
 						<GithubLogo
@@ -59,13 +78,19 @@ const Video = () => {
 						/>
 					</div>
 				</Magnetic>
-				<Cursor stickyElement={ref} cursorsize={cursorSize} />
+				<Cursor stickyElement={githubRef} cursorsize={cursorSize} />
 			</div>
-			<div className="h-12 w-full font-jetBrains font-semibold flex justify-center items-center bg-black text-white">
-				{"Made with love by Abhishek"}
+			<div className="h-12 w-full p-2 flex flex-col justify-center items-center bg-black text-white">
+				<span className="font-jetBrains font-semibold text-white">
+					{"Made With Love By Abhishek"}
+				</span>
+
+				<span className="font-jetBrains font-semibold text-white">
+					{"Built Using React, GSAP, Framer"}
+				</span>
 			</div>
 		</div>
 	);
 };
 
-export default Video;
+export default HomePage;

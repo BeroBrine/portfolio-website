@@ -46,19 +46,24 @@ const Cursor = ({
 			});
 		};
 	}, []);
+
 	const mousePos = {
 		x: useMotionValue(0),
 		y: useMotionValue(0),
 	};
+
 	const smoothOption = { damping: 20, stiffness: 200, mass: 0.2 };
+
 	const smoothMouse = {
 		x: useSpring(mousePos.x, smoothOption),
 		y: useSpring(mousePos.y, smoothOption),
 	};
+
 	const scale = {
 		x: useMotionValue(1),
 		y: useMotionValue(1),
 	};
+
 	const rotate = ({ x, y }: { x: number; y: number }) => {
 		const angle = Math.atan2(y, x);
 		//@ts-ignore
@@ -154,7 +159,7 @@ const Cursor = ({
 					scaleX: scale.x,
 					scaleY: scale.y,
 				}}
-				className={`pointer-events-none bg-yellow-200  absolute  rounded-full top-0 left-0 z-50 mix-blend-difference`}
+				className={`pointer-events-none hidden sm:flex bg-yellow-200  absolute  rounded-full top-0 left-0 z-50 mix-blend-difference`}
 			></motion.div>
 		);
 	else return <div></div>;
