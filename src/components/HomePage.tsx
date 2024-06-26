@@ -131,14 +131,6 @@ const HomePage = () => {
 					Reimagine,Rebuild....
 				</div>
 			</div>
-
-			<div className="h-screen w-screen p-4 grid grid-cols-4 bg-black">
-				{arr.map((elem) => {
-					return (
-						<div key={elem} className="w-40  h-40 bg-white rounded-xl"></div>
-					);
-				})}
-			</div>
 		</div>
 	);
 };
