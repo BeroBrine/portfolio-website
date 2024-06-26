@@ -6,6 +6,9 @@ const Magnetic = ({ children }: { children: ReactNode }) => {
 	const [postion, setPosition] = useState({ x: 0, y: 0 });
 
 	const handleMouse = (e: React.MouseEvent) => {
+		if (window.outerWidth < 768) {
+			return;
+		}
 		const { clientX, clientY } = e;
 		const clientRect = ref?.current?.getBoundingClientRect();
 

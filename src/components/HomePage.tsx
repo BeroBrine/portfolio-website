@@ -13,9 +13,8 @@ const HomePage = () => {
 	const parentDiv = useRef<HTMLDivElement>(null);
 	const parentRef = useRef<HTMLDivElement>(null);
 	const childRef = useRef<HTMLDivElement>(null);
-
 	const [cursorSize, setCursorSize] = useState<number>(15);
-
+	const arr: Array<number> = [1, 2, 3, 4, 5];
 	useGSAP(
 		() => {
 			gsap.from([textDiv.current, githubRef.current], {
@@ -25,29 +24,38 @@ const HomePage = () => {
 				scale: 1.11,
 				stagger: 0.8,
 			});
-
-			gsap.to(childRef.current, {
-				transform: "translate(-140%)",
-				scrollTrigger: {
-					trigger: parentRef.current,
-					start: "top 0%",
-					end: "top -100%",
-					scrub: 2,
-					pin: true,
-					markers: true,
-				},
-			});
+			if (window.outerWidth > 768) {
+				console.log("desktop");
+				gsap.fromTo(
+					childRef.current,
+					{
+						opacity: 0.4,
+					},
+					{
+						transform: "translate(-140%)",
+						opacity: 1,
+						scrollTrigger: {
+							trigger: parentRef.current,
+							start: "top 0%",
+							end: "top -100%",
+							scrub: 5,
+							pin: true,
+							markers: true,
+						},
+					},
+				);
+			}
 		},
 
 		{ scope: textDiv },
 	);
 
 	return (
-		<div ref={parentDiv} id="" className="container">
+		<div ref={parentDiv} id="" className="container ">
 			<Navbar homepage={true} />
 			<video
 				id="video"
-				className="h-screen w-full absolute object-cover -z-10 "
+				className="h-screen w-full absolute object-cover  overflow-x-hidden"
 				autoPlay
 				loop
 			>
@@ -55,13 +63,13 @@ const HomePage = () => {
 			</video>
 			<div
 				ref={textDiv}
-				className=" opacity-1 flex-col flex justify-center items-center h-screen text-white  mx-auto"
+				className=" opacity-1 flex-col flex justify-center items-center h-screen text-white w-screen "
 			>
 				<Magnetic>
 					<span
 						onMouseEnter={() => setCursorSize(80)}
 						onMouseLeave={() => setCursorSize(20)}
-						className="text-2xl sm:text-4xl md:text-6xl cursor-none font-jetBrains font-semibold"
+						className="text-2xl sm:text-4xl md:text-6xl sm:cursor-none font-jetBrains font-semibold"
 					>
 						Hi.&#128075;
 					</span>
@@ -70,7 +78,7 @@ const HomePage = () => {
 					<span
 						onMouseEnter={() => setCursorSize(80)}
 						onMouseLeave={() => setCursorSize(20)}
-						className="text-2xl sm:text-4xl md:text-6xl cursor-none font-jetBrains font-semibold"
+						className="text-2xl sm:text-4xl md:text-6xl sm:cursor-none font-jetBrains font-semibold"
 					>
 						I'm Abhishek
 					</span>
@@ -79,7 +87,7 @@ const HomePage = () => {
 					<span
 						onMouseEnter={() => setCursorSize(80)}
 						onMouseLeave={() => setCursorSize(20)}
-						className="type-fruit cursor-none text-2xl sm:text-4xl md:text-6xl font-jetBrains font-semibold"
+						className="type-fruit text-2xl sm:cursor-none sm:text-4xl md:text-6xl font-jetBrains font-semibold"
 					/>
 				</Magnetic>
 				<Magnetic>
@@ -91,11 +99,15 @@ const HomePage = () => {
 					>
 						<GithubLogo
 							link={"https://github.com/BeroBrine"}
-							className={"h-16  w-16 fill-white cursor-none "}
+							className={"h-16  w-16 fill-white cursor-pointer sm:cursor-none "}
 						/>
 					</div>
 				</Magnetic>
-				<Cursor stickyElement={githubRef} cursorsize={cursorSize} />
+				{window.outerWidth > 768 ? (
+					<Cursor stickyElement={githubRef} cursorsize={cursorSize} />
+				) : (
+					<div></div>
+				)}
 			</div>
 			{
 				//      <div className="h-12 w-full p-2 flex flex-col justify-center items-center bg-black text-white">
@@ -110,16 +122,23 @@ const HomePage = () => {
 			}
 			<div
 				ref={parentRef}
-				className="h-screen w-screen bg-black overflow-x-hidden"
+				className="h-screen w-screen md:flex hidden bg-black overflow-x-hidden"
 			>
 				<div
 					ref={childRef}
-					className="grid place-items-center font-jetBrains text-[25vw]  text-white font-bold"
+					className="flex justify-center items-center font-jetBrains text-[25vw]  text-white font-bold"
 				>
-					REIMAGINE
+					Reimagine,Rebuild....
 				</div>
 			</div>
-			<div className="h-screen w-screen bg-black overflow-x-hidden"></div>
+
+			<div className="h-screen w-screen p-4 grid grid-cols-4 bg-black">
+				{arr.map((elem) => {
+					return (
+						<div key={elem} className="w-40  h-40 bg-white rounded-xl"></div>
+					);
+				})}
+			</div>
 		</div>
 	);
 };
