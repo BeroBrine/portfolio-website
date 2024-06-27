@@ -11,10 +11,13 @@ const HomePage = () => {
 	const githubRef = useRef<HTMLDivElement>(null);
 	const textDiv = useRef<HTMLDivElement>(null);
 	const parentDiv = useRef<HTMLDivElement>(null);
+	const reimagineRef = useRef<HTMLDivElement>(null);
+	const rebuildRef = useRef<HTMLDivElement>(null);
 	const parentRef = useRef<HTMLDivElement>(null);
 	const childRef = useRef<HTMLDivElement>(null);
-	const [cursorSize, setCursorSize] = useState<number>(15);
-	const arr: Array<number> = [1, 2, 3, 4, 5];
+
+	const [cursorSize, setCursorSize] = useState<number>(10);
+
 	useGSAP(
 		() => {
 			gsap.from([textDiv.current, githubRef.current], {
@@ -24,29 +27,46 @@ const HomePage = () => {
 				scale: 1.11,
 				stagger: 0.8,
 			});
-			if (window.outerWidth > 768) {
-				console.log("desktop");
-				gsap.fromTo(
-					childRef.current,
-					{
-						opacity: 0.4,
-					},
-					{
-						transform: "translate(-140%)",
-						opacity: 1,
-						scrollTrigger: {
-							trigger: parentRef.current,
-							start: "top 0%",
-							end: "top -100%",
-							scrub: 5,
-							pin: true,
-							markers: true,
-						},
-					},
-				);
-			}
-		},
 
+			gsap.fromTo(
+				[childRef.current],
+				{
+					opacity: 0.7,
+				},
+				{
+					opacity: 1,
+				},
+			);
+			gsap.from(reimagineRef.current, {
+				opacity: 0,
+				y: -150,
+				duration: 3,
+				scrollTrigger: {
+					trigger: parentRef.current,
+					start: "top 0%",
+					markers: true,
+					scrub: 3,
+					pin: true,
+					end: "top -100%",
+				},
+			});
+
+			gsap.to(rebuildRef.current, {
+				opacity: 1,
+				y: -30,
+				scale: 0.8,
+				rotate: 10,
+				duration: 3,
+				scrollTrigger: {
+					trigger: parentRef.current,
+					start: "top 0%",
+					end: "top -100%",
+					markers: true,
+					pin: true,
+					scrub: 3,
+				},
+			});
+		},
 		{ scope: textDiv },
 	);
 
@@ -68,7 +88,7 @@ const HomePage = () => {
 				<Magnetic>
 					<span
 						onMouseEnter={() => setCursorSize(80)}
-						onMouseLeave={() => setCursorSize(20)}
+						onMouseLeave={() => setCursorSize(10)}
 						className="text-2xl sm:text-4xl md:text-6xl sm:cursor-none font-jetBrains font-semibold"
 					>
 						Hi.&#128075;
@@ -77,7 +97,7 @@ const HomePage = () => {
 				<Magnetic>
 					<span
 						onMouseEnter={() => setCursorSize(80)}
-						onMouseLeave={() => setCursorSize(20)}
+						onMouseLeave={() => setCursorSize(10)}
 						className="text-2xl sm:text-4xl md:text-6xl sm:cursor-none font-jetBrains font-semibold"
 					>
 						I'm Abhishek
@@ -86,14 +106,14 @@ const HomePage = () => {
 				<Magnetic>
 					<span
 						onMouseEnter={() => setCursorSize(80)}
-						onMouseLeave={() => setCursorSize(20)}
+						onMouseLeave={() => setCursorSize(10)}
 						className="type-fruit text-2xl sm:cursor-none sm:text-4xl md:text-6xl font-jetBrains font-semibold"
 					/>
 				</Magnetic>
 				<Magnetic>
 					<div
 						onMouseEnter={() => setCursorSize(80)}
-						onMouseLeave={() => setCursorSize(20)}
+						onMouseLeave={() => setCursorSize(10)}
 						ref={githubRef}
 						className=" items-center relative w-40 h-40 flex justify-center py-2"
 					>
@@ -103,34 +123,35 @@ const HomePage = () => {
 						/>
 					</div>
 				</Magnetic>
-				{window.outerWidth > 768 ? (
-					<Cursor stickyElement={githubRef} cursorsize={cursorSize} />
-				) : (
-					<div></div>
-				)}
 			</div>
-			{
-				//      <div className="h-12 w-full p-2 flex flex-col justify-center items-center bg-black text-white">
-				// 	<span className="font-jetBrains font-semibold text-white">
-				// 		{"Made With Love By Abhishek"}
-				// 	</span>
-				//
-				// 	<span className="font-jetBrains font-semibold text-white">
-				// 		{"Built Using React, GSAP, Framer"}
-				// 	</span>
-				// </div>
-			}
 			<div
-				ref={parentRef}
-				className="h-screen w-screen md:flex hidden bg-black overflow-x-hidden"
+				ref={childRef}
+				className="flex  flex-col bg-black overflow-hidden  sm:-mr-11 justify-center items-center font-jetBrains transform-gpu  text-[20vw]  text-white font-bold cursor-default"
 			>
-				<div
-					ref={childRef}
-					className="flex justify-center items-center font-jetBrains text-[25vw]  text-white font-bold"
-				>
-					Reimagine,Rebuild....
+				<div ref={reimagineRef} className="-translate-x-3  sm:transform-none">
+					Reimagine
+				</div>
+				<div ref={rebuildRef} className="opacity-0">
+					Rebuild
 				</div>
 			</div>
+
+			{
+				<div className="h-12 w-screen  p-2 flex flex-col justify-center items-center bg-black text-white">
+					<span className="font-jetBrains font-semibold text-white">
+						{"Made With Love By Abhishek"}
+					</span>
+
+					<span className="font-jetBrains font-semibold text-white">
+						{"Built Using React, GSAP, Framer"}
+					</span>
+				</div>
+			}
+			{window.outerWidth > 768 ? (
+				<Cursor stickyElement={githubRef} cursorsize={cursorSize} />
+			) : (
+				<div></div>
+			)}
 		</div>
 	);
 };
