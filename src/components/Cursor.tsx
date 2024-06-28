@@ -21,6 +21,7 @@ const Cursor = ({
 		setCursorRender,
 		refElem,
 	});
+
 	console.log(cursorRender);
 	return (
 		<div>
