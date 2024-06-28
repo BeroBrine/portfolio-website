@@ -1,43 +1,40 @@
-import { motion } from "framer-motion";
-import { ReactNode, useRef, useState } from "react";
+import { type ReactNode, useRef, useState, useEffect } from "react";
+import useMagneticAnimation from "../hooks/MagneticAnim";
 
 const Magnetic = ({ children }: { children: ReactNode }) => {
 	const ref = useRef<HTMLDivElement>(null);
-	const [postion, setPosition] = useState({ x: 0, y: 0 });
+	const [position, setPosition] = useState({ x: 0, y: 0 });
 
-	const handleMouse = (e: React.MouseEvent) => {
-		if (window.outerWidth < 768) {
-			return;
-		}
-		const { clientX, clientY } = e;
-		const clientRect = ref?.current?.getBoundingClientRect();
+	const { handleMouse, reset } = useMagneticAnimation({
+		position,
+		setPosition,
+		ref,
+	});
 
-		if (
-			clientRect?.top &&
-			clientRect?.left &&
-			clientRect?.height &&
-			clientRect?.width
-		) {
-			const middleX = clientX - (clientRect.left + clientRect.width / 2);
-			const middleY = clientY - (clientRect.top + clientRect.height / 2);
-			setPosition({ x: middleX * 0.2, y: middleY * 0.2 });
-		}
-	};
+	useEffect(() => {
+		ref.current?.addEventListener("mousemove", (e: MouseEvent) => {
+			handleMouse(e);
+		});
 
-	const reset = () => {
-		setPosition({ x: 0, y: 0 });
-	};
+		ref.current?.addEventListener("mouseleave", () => {
+			reset();
+		});
+
+		return () => {
+			ref.current?.removeEventListener("mousemove", (e: MouseEvent) => {
+				handleMouse(e);
+			});
+
+			ref.current?.removeEventListener("mouseleave", () => {
+				reset();
+			});
+		};
+	}, [position]);
 
 	return (
-		<motion.div
-			style={{ position: "relative" }}
-			ref={ref}
-			onMouseMove={handleMouse}
-			onMouseLeave={reset}
-			animate={postion}
-		>
+		<div ref={ref} className="relative">
 			{children}
-		</motion.div>
+		</div>
 	);
 };
 

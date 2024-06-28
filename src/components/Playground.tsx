@@ -1,16 +1,13 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap/gsap-core";
 
-import { MouseEventHandler, useEffect, useRef, useState } from "react";
-
-interface IAttr {
-	x: number;
-	y: number;
-}
+import { useRef, useState } from "react";
+import Cursor from "./Cursor";
 
 const Playground = () => {
 	const [path, setPath] = useState<string>("");
 	const [out, setOut] = useState<boolean>(false);
+	const divRef = useRef<HTMLDivElement>(null);
 	const pathRef = useRef<SVGPathElement>(null);
 
 	const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -19,7 +16,6 @@ const Playground = () => {
 	};
 
 	useGSAP(() => {
-		console.log(out);
 		if (out) {
 			gsap.to(pathRef.current, {
 				attr: {
@@ -46,9 +42,11 @@ const Playground = () => {
 
 	return (
 		<div>
+			<Cursor refElem={divRef} />
 			<div
 				onMouseMove={handleMouse}
 				onMouseLeave={handleMouseLeave}
+				ref={divRef}
 				id="string"
 				className="bg-black"
 			>

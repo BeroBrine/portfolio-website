@@ -10,7 +10,6 @@ const GithubLogo = forwardRef(
 		const handleClick = () => {
 			window.open(`${link}`, "_blank")?.focus();
 		};
-		console.log(className);
 		return (
 			<div ref={ref}>
 				<svg
