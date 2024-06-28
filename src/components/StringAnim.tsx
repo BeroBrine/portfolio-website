@@ -2,16 +2,17 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap/gsap-core";
 
 import { useRef, useState } from "react";
-import Cursor from "./Cursor";
 
-const Playground = () => {
+const StringAnim = () => {
 	const [path, setPath] = useState<string>("");
 	const [out, setOut] = useState<boolean>(false);
 	const divRef = useRef<HTMLDivElement>(null);
 	const pathRef = useRef<SVGPathElement>(null);
 
 	const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
-		setPath(`M 100 200 Q ${e.clientX} ${e.clientY} 1500 200`);
+		setPath(
+			`M 100 200 Q ${Math.floor(e.clientX)} ${Math.floor(e.clientY)} 1500 200`,
+		);
 		setOut(false);
 	};
 
@@ -42,14 +43,16 @@ const Playground = () => {
 
 	return (
 		<div>
-			<Cursor refElem={divRef} />
 			<div
 				onMouseMove={handleMouse}
 				onMouseLeave={handleMouseLeave}
 				ref={divRef}
 				id="string"
-				className="bg-black"
+				className="py-3 bg-black w-screen  text-center"
 			>
+				<span className="text-white font-jetBrains text-lg font-bold ">
+					Playground!
+				</span>
 				<svg width="1600" height="400" className="">
 					<path
 						ref={pathRef}
@@ -63,4 +66,4 @@ const Playground = () => {
 	);
 };
 
-export default Playground;
+export default StringAnim;

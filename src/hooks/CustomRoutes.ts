@@ -1,6 +1,6 @@
 import { IRoute } from "./Interfaces";
 import { Project, Linux } from "../components/Navbar/index";
-import { HomePage, Playground } from "../components";
+import { HomePage } from "../components";
 
 const useCustomRoutes = (): IRoute[] => {
 	return [
@@ -20,13 +20,6 @@ const useCustomRoutes = (): IRoute[] => {
 			key: 3,
 			path: "/linux",
 			element: Linux,
-		},
-
-		// WARN: Remember to remove this.
-		{
-			key: 4,
-			path: "/test",
-			element: Playground,
 		},
 	];
 };

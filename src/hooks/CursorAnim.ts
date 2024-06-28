@@ -8,7 +8,7 @@ const useCursorAnim = ({
 	gitRef,
 	mousePos,
 	setDivRender,
-	gitDivRender,
+	setCursorRender,
 	refElem,
 }: ICursor) => {
 	const { contextSafe } = useGSAP();
@@ -47,6 +47,7 @@ const useCursorAnim = ({
 		});
 
 		const updatePos = (e: MouseEvent) => {
+			setCursorRender(true);
 			mousePos.x = e.clientX - 6;
 			mousePos.y = e.clientY - 5;
 			namedFn();
@@ -76,12 +77,9 @@ const useCursorAnim = ({
 		refElem?.current.map((el) => {
 			if (el.id === "github") {
 				el.addEventListener("mouseenter", () => {
-					gitDivRender(true);
 					handleGitMouseEnter();
 				});
-				el.addEventListener("mouseleave", () => {
-					gitDivRender(false);
-				});
+				el.addEventListener("mouseleave", () => {});
 				return;
 			} else {
 				el.addEventListener("mouseenter", () => {
@@ -97,12 +95,8 @@ const useCursorAnim = ({
 			window.removeEventListener("mousemove", updatePos);
 			refElem?.current.map((el) => {
 				if (el.id === "github") {
-					el.removeEventListener("mouseenter", () => {
-						gitDivRender(true);
-					});
-					el.removeEventListener("mouseleave", () => {
-						gitDivRender(false);
-					});
+					el.removeEventListener("mouseenter", () => {});
+					el.removeEventListener("mouseleave", () => {});
 					return;
 				} else {
 					el.removeEventListener("mouseenter", () => {

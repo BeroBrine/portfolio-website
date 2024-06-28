@@ -1,8 +1,12 @@
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { IMagnetiAnim } from "./Interfaces";
+import { IMagneticAnim } from "./Interfaces";
 
-const useMagneticAnimation = ({ position, setPosition, ref }: IMagnetiAnim) => {
+const useMagneticAnimation = ({
+	position,
+	setPosition,
+	ref,
+}: IMagneticAnim) => {
 	useGSAP(() => {
 		gsap.to(ref.current, {
 			x: position.x,

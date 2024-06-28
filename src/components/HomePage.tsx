@@ -6,6 +6,8 @@ import Magnetic from "./Magnetic";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import Cursor from "./Cursor";
+import Skills from "./Skills";
+import StringAnim from "./StringAnim";
 
 const HomePage = () => {
 	const textDiv = useRef<HTMLDivElement>(null);
@@ -44,7 +46,6 @@ const HomePage = () => {
 						scrollTrigger: {
 							trigger: parentRef.current,
 							start: "top 0%",
-							markers: true,
 							scrub: 3,
 							end: "top -100%",
 						},
@@ -62,12 +63,15 @@ const HomePage = () => {
 					const handleMouse = () => {
 						gsap.to(elem, {
 							rotate: 0,
+							delay: 0.3,
 						});
 					};
 
 					const handleMouseLeave = () => {
 						gsap.to(elem, {
 							rotate: 10,
+
+							delay: 0.3,
 						});
 					};
 					elem.addEventListener("mouseover", handleMouse);
@@ -82,7 +86,6 @@ const HomePage = () => {
 							trigger: parentRef.current,
 							start: "top 0%",
 							end: "top -100%",
-							markers: true,
 							scrub: 3,
 						},
 					});
@@ -163,16 +166,18 @@ const HomePage = () => {
 			</div>
 
 			{
-				<div className="h-12 w-screen  p-2 flex flex-col justify-center items-center bg-black text-white">
-					<span className="font-jetBrains font-semibold text-white">
-						{"Made With Love By Abhishek"}
-					</span>
-
-					<span className="font-jetBrains font-semibold text-white">
-						{"Built Using React, GSAP, Framer"}
-					</span>
-				</div>
+				// <div className="h-12 w-screen  p-2 flex flex-col justify-center items-center bg-black text-white">
+				// 	<span className="font-jetBrains font-semibold text-white">
+				// 		{"Made With Love By Abhishek"}
+				// 	</span>
+				//
+				// 	<span className="font-jetBrains font-semibold text-white">
+				// 		{"Built Using React, GSAP, Framer"}
+				// 	</span>
+				// </div>
 			}
+			<StringAnim />
+			<Skills />
 		</div>
 	);
 };

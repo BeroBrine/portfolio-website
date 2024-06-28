@@ -21,6 +21,6 @@ export interface ICursor {
 	gitRef: React.RefObject<HTMLDivElement>;
 	mousePos: IPosition;
 	setDivRender: React.Dispatch<React.SetStateAction<boolean>>;
-	gitDivRender: React.Dispatch<React.SetStateAction<boolean>>;
+	setCursorRender: React.Dispatch<React.SetStateAction<boolean>>;
 	refElem?: React.MutableRefObject<HTMLDivElement[]>;
 }

@@ -10,7 +10,7 @@ const Cursor = ({
 	const gitRef = useRef<HTMLDivElement>(null);
 	const mousePos: IPosition = { x: 0, y: 0 };
 	const [divRender, setDivRender] = useState<boolean>(false);
-	const [gitRender, gitDivRender] = useState<boolean>(false);
+	const [cursorRender, setCursorRender] = useState<boolean>(false);
 
 	useCursorAnim({
 		cursorRef,
@@ -18,24 +18,28 @@ const Cursor = ({
 		gitRef,
 		mousePos,
 		setDivRender,
-		gitDivRender,
+		setCursorRender,
 		refElem,
 	});
-	console.log(gitRender);
+	console.log(cursorRender);
 	return (
 		<div>
-			<div
-				ref={cursorRef}
-				className={`${divRender ? "" : "mix-blend-difference"} z-50 pointer-events-none  bg-yellow-200 top-0 left-0 fixed rounded-full w-3 h-3`}
-			>
-				{divRender ? (
-					<div ref={textRef} className="">
-						<img src="/altinay-dinc-LluELtL5mK4-unsplash.jpg" alt="img" />
-					</div>
-				) : (
-					<div className="" ref={textRef}></div>
-				)}
-			</div>
+			{cursorRender ? (
+				<div
+					ref={cursorRef}
+					className={`${divRender ? "" : "mix-blend-difference"} z-50 pointer-events-none  bg-yellow-200 top-0 left-0 fixed rounded-full w-3 h-3`}
+				>
+					{divRender ? (
+						<div ref={textRef} className="fixed">
+							<img src="/altinay-dinc-LluELtL5mK4-unsplash.jpg" alt="img" />
+						</div>
+					) : (
+						<div className="" ref={textRef}></div>
+					)}
+				</div>
+			) : (
+				<div ref={cursorRef}></div>
+			)}
 		</div>
 	);
 };
