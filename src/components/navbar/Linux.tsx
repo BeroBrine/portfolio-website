@@ -1,5 +1,5 @@
-import LapMockup from "../Misc/LapMockup";
-import Navbar from "../Homepage/Navbar";
+import LapMockup from "../misc/LapMockup";
+import Navbar from "./Navbar";
 
 const Linux = () => {
 	return (

@@ -1,4 +1,4 @@
-import terminalHello from "../assets/myPics/terminal.mp4";
+import terminalHello from "../../assets/terminalHello.mp4";
 
 const LapMockup = () => {
 	return (

@@ -1,6 +1,6 @@
 import GithubLogo from "../svgs/GithubLogo";
-import { useRef } from "react";
-import bgVid from "../assets/myPics/bgVid.mp4";
+import { useEffect, useRef, useState } from "react";
+import bgVid from "../../assets/bgVid.mp4";
 import Navbar from "../navbar/Navbar";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -8,15 +8,26 @@ import Skills from "./Skills";
 import Magnetic from "../animations/Magnetic";
 import Cursor from "../animations/Cursor";
 import StringAnim from "../animations/StringAnim";
+import { IRefs } from "../../lib/InterfacesAndEnum";
+import Quote from "./Quote";
 
 const HomePage = () => {
 	const textDiv = useRef<HTMLDivElement>(null);
 	const parentDiv = useRef<HTMLDivElement>(null);
-	const parentRef = useRef<HTMLDivElement>(null);
-	const childRef = useRef<HTMLDivElement>(null);
 
-	const refArr = useRef<Array<HTMLDivElement>>([]);
-	refArr.current = [];
+	const refObj = useRef<IRefs>(null);
+	//@ts-ignore // to shut up ts to not complaint about rerender not being used
+	const [rerender, setRerender] = useState<boolean>(false);
+	// this re-render is neccessary because the ref does not initialize on initial render. probably something to do with useImperativeHandle hook
+
+	useEffect(() => {
+		const id = setInterval(() => {
+			setRerender(true);
+		}, 0.1);
+		return () => {
+			clearInterval(id);
+		};
+	}, []);
 
 	useGSAP(
 		() => {
@@ -27,87 +38,25 @@ const HomePage = () => {
 				scale: 1.11,
 				stagger: 0.8,
 			});
-
-			gsap.fromTo(
-				[childRef.current],
-				{
-					opacity: 0.7,
-				},
-				{
-					opacity: 1,
-				},
-			);
-			refArr.current.map((elem) => {
-				if (elem.id === "reimagine") {
-					gsap.from(elem, {
-						opacity: 0,
-						y: -150,
-						duration: 3,
-						scrollTrigger: {
-							trigger: parentRef.current,
-							start: "top 0%",
-							scrub: 3,
-							end: "top -100%",
-						},
-					});
-				} else if (elem.id === "github") {
-					gsap.from(elem, {
-						opacity: 0,
-						duration: 3,
-						delay: 1,
-						y: 40,
-						scale: 1.11,
-						stagger: 0.8,
-					});
-				} else {
-					const handleMouse = () => {
-						gsap.to(elem, {
-							rotate: 0,
-							delay: 0.3,
-						});
-					};
-
-					const handleMouseLeave = () => {
-						gsap.to(elem, {
-							rotate: 10,
-
-							delay: 0.3,
-						});
-					};
-					elem.addEventListener("mouseover", handleMouse);
-					elem.addEventListener("mouseleave", handleMouseLeave);
-					gsap.to(elem, {
-						opacity: 1,
-						y: -30,
-						scale: 0.8,
-						rotate: 10,
-						duration: 3,
-						scrollTrigger: {
-							trigger: parentRef.current,
-							start: "top 0%",
-							end: "top -100%",
-							scrub: 3,
-						},
-					});
-				}
-			});
 		},
 		{ scope: textDiv },
 	);
-	return (
-		<div ref={parentDiv} id="" className="container ">
-			{window.outerWidth > 768 ? <Cursor refElem={refArr} /> : <div></div>}
-			<Navbar homepage={true} />
 
+	return (
+		<div
+			ref={parentDiv}
+			id=""
+			className="flex flex-col bg-black overflow-x-hidden"
+		>
+			<Navbar homepage={true} />
 			<video
 				id="video"
-				className="h-screen w-full absolute object-cover  overflow-x-hidden"
+				className="h-screen w-full absolute object-cover  "
 				autoPlay
 				loop
 			>
 				<source src={bgVid} type="video/mp4" />
 			</video>
-
 			<div
 				ref={textDiv}
 				className=" opacity-1 flex-col flex justify-center items-center h-screen text-white w-screen "
@@ -128,9 +77,6 @@ const HomePage = () => {
 				<Magnetic>
 					<div
 						id="github"
-						ref={(ref) => {
-							if (ref) return refArr.current.push(ref);
-						}}
 						className=" items-center relative w-40 h-40 flex justify-center py-2"
 					>
 						<GithubLogo
@@ -140,31 +86,6 @@ const HomePage = () => {
 					</div>
 				</Magnetic>
 			</div>
-
-			<div
-				ref={childRef}
-				className="flex  flex-col bg-black overflow-hidden  sm:-mr-11 justify-center items-center font-jetBrains transform-gpu  text-[20vw]  text-white font-bold cursor-default"
-			>
-				<div
-					id="reimagine"
-					ref={(ref) => {
-						if (ref) return refArr.current.push(ref);
-					}}
-					className="-translate-x-3  sm:transform-none"
-				>
-					Reimagine
-				</div>
-				<div
-					id="rebuild"
-					ref={(ref) => {
-						if (ref) return refArr.current.push(ref);
-					}}
-					className="opacity-0"
-				>
-					Rebuild
-				</div>
-			</div>
-
 			{
 				// <div className="h-12 w-screen  p-2 flex flex-col justify-center items-center bg-black text-white">
 				// 	<span className="font-jetBrains font-semibold text-white">
@@ -176,8 +97,15 @@ const HomePage = () => {
 				// 	</span>
 				// </div>
 			}
+			<Quote ref={refObj} />
 			<StringAnim />
 			<Skills />
+
+			{window.outerWidth > 768 && refObj.current ? (
+				<Cursor refElem={refObj.current} />
+			) : (
+				<div></div>
+			)}
 		</div>
 	);
 };

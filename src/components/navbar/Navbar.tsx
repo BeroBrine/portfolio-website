@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import small_dimension from "../assets/myPics/small_dimension.jpg";
+import small_dimension from "../../assets/small_dimension.jpg";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import Button from "../misc/Button";

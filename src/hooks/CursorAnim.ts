@@ -1,11 +1,10 @@
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ICursor } from "./Interfaces";
+import { ICursor } from "../lib/InterfacesAndEnum";
 
 const useCursorAnim = ({
 	cursorRef,
 	textRef,
-	gitRef,
 	mousePos,
 	setDivRender,
 	setCursorRender,
@@ -63,49 +62,38 @@ const useCursorAnim = ({
 			mouseLeaveAnimation();
 		};
 
-		const handleGitMouseEnter = () => {
-			gsap.to(gitRef.current, {
-				x: 200,
-				y: 200,
-				width: 10,
-				height: 10,
-			});
-		};
-
 		window.addEventListener("mousemove", updatePos);
 
-		refElem?.current.map((el) => {
-			if (el.id === "github") {
-				el.addEventListener("mouseenter", () => {
-					handleGitMouseEnter();
-				});
-				el.addEventListener("mouseleave", () => {});
-				return;
-			} else {
-				el.addEventListener("mouseenter", () => {
-					handleMouse();
-				});
-				el.addEventListener("mouseleave", () => {
-					handleMouseLeave();
-				});
-			}
+		refElem?.rebuildRef.current?.addEventListener("mouseenter", () => {
+			console.log("mouseEntry");
+			handleMouse();
+		});
+		refElem?.rebuildRef.current?.addEventListener("mouseleave", () => {
+			console.log("mouseEntry");
+			handleMouseLeave();
+		});
+
+		refElem?.reimageineRef.current?.addEventListener("mouseenter", () => {
+			handleMouse();
+		});
+		refElem?.reimageineRef.current?.addEventListener("mouseleave", () => {
+			handleMouseLeave();
 		});
 
 		return () => {
 			window.removeEventListener("mousemove", updatePos);
-			refElem?.current.map((el) => {
-				if (el.id === "github") {
-					el.removeEventListener("mouseenter", () => {});
-					el.removeEventListener("mouseleave", () => {});
-					return;
-				} else {
-					el.removeEventListener("mouseenter", () => {
-						handleMouse();
-					});
-					el.removeEventListener("mouseleave", () => {
-						handleMouseLeave();
-					});
-				}
+			refElem?.rebuildRef.current?.removeEventListener("mouseenter", () => {
+				handleMouse();
+			});
+			refElem?.rebuildRef.current?.removeEventListener("mouseleave", () => {
+				handleMouseLeave();
+			});
+
+			refElem?.reimageineRef.current?.removeEventListener("mouseenter", () => {
+				handleMouse();
+			});
+			refElem?.reimageineRef.current?.removeEventListener("mouseleave", () => {
+				handleMouseLeave();
 			});
 		};
 	}, []);

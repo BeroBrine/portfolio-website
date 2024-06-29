@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { IMagneticAnim } from "./Interfaces";
+import { IMagneticAnim } from "../lib/InterfacesAndEnum";
 
 const useMagneticAnimation = ({
 	position,

@@ -1,28 +1,26 @@
 import { useRef, useState } from "react";
-import { IPosition } from "../../hooks/Interfaces";
+import { IPosition } from "../../lib//InterfacesAndEnum";
+import imgSrc from "../../assets/altinay-dinc-LluELtL5mK4-unsplash.jpg";
 import useCursorAnim from "../../hooks/CursorAnim";
+import { IRefs } from "../../lib/InterfacesAndEnum";
 
-const Cursor = ({
-	refElem,
-}: { refElem?: React.MutableRefObject<HTMLDivElement[]> }) => {
+const Cursor = ({ refElem }: { refElem?: IRefs }) => {
 	const cursorRef = useRef<HTMLDivElement>(null);
 	const textRef = useRef<HTMLDivElement>(null);
-	const gitRef = useRef<HTMLDivElement>(null);
 	const mousePos: IPosition = { x: 0, y: 0 };
 	const [divRender, setDivRender] = useState<boolean>(false);
 	const [cursorRender, setCursorRender] = useState<boolean>(false);
 
+	console.log(refElem);
 	useCursorAnim({
 		cursorRef,
 		textRef,
-		gitRef,
 		mousePos,
 		setDivRender,
 		setCursorRender,
 		refElem,
 	});
 
-	console.log(cursorRender);
 	return (
 		<div>
 			{cursorRender ? (
@@ -32,7 +30,7 @@ const Cursor = ({
 				>
 					{divRender ? (
 						<div ref={textRef} className="fixed">
-							<img src="/altinay-dinc-LluELtL5mK4-unsplash.jpg" alt="img" />
+							<img src={imgSrc} alt="img" />
 						</div>
 					) : (
 						<div className="" ref={textRef}></div>

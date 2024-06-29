@@ -1,5 +1,5 @@
-import { IRoute } from "./Interfaces";
-import { Project, Linux } from "../components/Navbar/index";
+import { IRoute } from "./InterfacesAndEnum";
+import { Project, Linux } from "../components/navbar/index";
 import { HomePage } from "../components";
 
 const useCustomRoutes = (): IRoute[] => {
