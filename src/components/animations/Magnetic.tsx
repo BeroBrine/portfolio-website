@@ -1,5 +1,5 @@
 import { type ReactNode, useRef, useState, useEffect } from "react";
-import useMagneticAnimation from "../hooks/MagneticAnim";
+import useMagneticAnimation from "../../hooks/MagneticAnim";
 
 const Magnetic = ({ children }: { children: ReactNode }) => {
 	const ref = useRef<HTMLDivElement>(null);

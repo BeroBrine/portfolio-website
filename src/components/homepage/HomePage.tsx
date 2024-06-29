@@ -1,13 +1,13 @@
-import GithubLogo from "./svgs/GithubLogo";
+import GithubLogo from "../svgs/GithubLogo";
 import { useRef } from "react";
 import bgVid from "../assets/myPics/bgVid.mp4";
-import Navbar from "./Navbar";
-import Magnetic from "./Magnetic";
+import Navbar from "../navbar/Navbar";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import Cursor from "./Cursor";
 import Skills from "./Skills";
-import StringAnim from "./StringAnim";
+import Magnetic from "../animations/Magnetic";
+import Cursor from "../animations/Cursor";
+import StringAnim from "../animations/StringAnim";
 
 const HomePage = () => {
 	const textDiv = useRef<HTMLDivElement>(null);

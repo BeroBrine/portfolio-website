@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useNavigate } from "react-router-dom";
-import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,10 +19,6 @@ const Project = () => {
 	const navi = () => {
 		navigate("/");
 	};
-
-	useGSAP(() => {
-		const tl = gsap.timeline();
-	});
 
 	return (
 		<div className=" bg-black flex flex-col">

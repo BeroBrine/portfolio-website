@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import { IPosition } from "../hooks/Interfaces";
-import useCursorAnim from "../hooks/CursorAnim";
+import { IPosition } from "../../hooks/Interfaces";
+import useCursorAnim from "../../hooks/CursorAnim";
 
 const Cursor = ({
 	refElem,

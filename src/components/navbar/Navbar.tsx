@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import small_dimension from "../assets/myPics/small_dimension.jpg";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import Button from "./Button";
+import Button from "../misc/Button";
 
 const Navbar = ({ homepage }: { homepage: boolean }) => {
 	const [scrolling, setScrolling] = useState(false);
