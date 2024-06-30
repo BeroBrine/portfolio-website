@@ -88,7 +88,7 @@ const HomePage = () => {
 				</Magnetic>
 			</div>
 			<Quote ref={refObj} />
-			<StringAnim />
+			{window.outerWidth > 768 ? <StringAnim /> : null}
 			<Skills />
 			{window.outerWidth > 768 && refObj.current ? (
 				<Cursor refElem={refObj.current} />

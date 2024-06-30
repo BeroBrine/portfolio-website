@@ -10,7 +10,6 @@ import {
 import { useRef } from "react";
 import Card from "./Card";
 import useCardAnimations from "../../hooks/CardAnim";
-import { cardTypes } from "../../lib/InterfacesAndEnum";
 
 const Skills = () => {
 	const langArr = ["Typescript", "Javascript", "Java", "Bash"];
@@ -25,7 +24,6 @@ const Skills = () => {
 	const triggerDivRef = useRef<HTMLDivElement>(null);
 
 	useCardAnimations(cardRefArr, triggerDivRef);
-	cardRefArr.current.map((elem) => console.log(elem.id));
 
 	return (
 		<div>
@@ -35,7 +33,6 @@ const Skills = () => {
 			>
 				<div className="w-full h-full grid grid-cols-1 grid-rows-4 sm:grid-cols-2 sm:grid-rows-2 items-center gap-6 flex-row justify-between p-10">
 					<Card
-						id={cardTypes.langCard}
 						ref={(ref) => {
 							if (ref) cardRefArr.current.push(ref);
 						}}
@@ -44,7 +41,6 @@ const Skills = () => {
 						Icon={RiCodeSSlashFill}
 					/>
 					<Card
-						id={cardTypes.frameworkCard}
 						ref={(ref) => {
 							if (ref) cardRefArr.current.push(ref);
 						}}
@@ -55,7 +51,6 @@ const Skills = () => {
 						dark
 					/>
 					<Card
-						id={cardTypes.devopsCard}
 						ref={(ref) => {
 							if (ref) cardRefArr.current.push(ref);
 						}}
@@ -65,7 +60,6 @@ const Skills = () => {
 						dark
 					/>
 					<Card
-						id={cardTypes.toolsCard}
 						ref={(ref) => {
 							if (ref) cardRefArr.current.push(ref);
 						}}

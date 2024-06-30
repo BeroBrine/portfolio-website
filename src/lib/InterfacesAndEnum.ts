@@ -40,7 +40,6 @@ export interface IRefs {
 export interface ICard {
 	dark?: boolean;
 	title: string;
-	id: string;
 	listItems: string[];
 	Icon?: RemixiconComponentType;
 	HeadingIcons?: RemixiconComponentType[];
@@ -48,9 +47,3 @@ export interface ICard {
 }
 
 //enums
-export enum cardTypes {
-	langCard = "langCard",
-	frameworkCard = "frameworkCard",
-	devopsCard = "devopsCard",
-	toolsCard = "toolsCard",
-}

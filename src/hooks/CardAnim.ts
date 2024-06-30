@@ -1,5 +1,4 @@
 import { gsap } from "gsap";
-import { cardTypes } from "../lib/InterfacesAndEnum";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -10,61 +9,45 @@ const useCardAnimations = (
 	gsap.registerPlugin(ScrollTrigger);
 
 	useGSAP(() => {
-		if (window.outerWidth > 768) {
-			cardRefArr.current.map((elem) => {
-				console.log(elem.id);
-				if (elem.id === cardTypes.langCard) {
-					console.log(elem.id);
-					gsap.from(elem, {
-						opacity: 0,
-						x: -400,
-						duration: 2,
-						scrollTrigger: {
-							trigger: triggerDivRef.current,
-							end: "6%",
-							scrub: 2,
-							toggleActions: "play pause resume reset",
-						},
-					});
-				} else if (elem.id === cardTypes.frameworkCard) {
-					gsap.from(elem, {
-						opacity: 0,
-						x: +400,
-						duration: 2,
-						scrollTrigger: {
-							trigger: triggerDivRef.current,
-							end: "6%",
-							scrub: 2,
-							toggleActions: "play pause resume reset",
-						},
-					});
-				} else if (elem.id === cardTypes.toolsCard) {
-					gsap.from(elem, {
-						opacity: 0,
-						x: -400,
-						duration: 5,
-						scrollTrigger: {
-							trigger: triggerDivRef.current,
-							end: "6%",
-							scrub: 2,
-							toggleActions: "play pause resume reset",
-						},
-					});
-				} else if (elem.id === cardTypes.devopsCard) {
-					gsap.from(elem, {
-						opacity: 0,
-						y: -400,
-						duration: 2,
-						scrollTrigger: {
-							trigger: triggerDivRef.current,
-							end: "6%",
-							scrub: 2,
-							toggleActions: "play pause resume reset",
-						},
-					});
-				}
-			});
-		}
+		cardRefArr.current.map((elem, i) => {
+			if (window.outerWidth > 768) {
+				const tl = gsap.timeline({
+					scrollTrigger: {
+						trigger: triggerDivRef.current,
+						end: "6%",
+						scrub: 2,
+					},
+				});
+
+				i % 2
+					? tl.from(elem, {
+							opacity: 0,
+							x: +400,
+						})
+					: tl.from(elem, {
+							opacity: 0,
+							x: -400,
+						});
+			} else {
+				const tl = gsap.timeline({
+					scrollTrigger: {
+						trigger: triggerDivRef.current,
+						end: "6%",
+						scrub: true,
+					},
+				});
+
+				i % 2
+					? tl.from(elem, {
+							opacity: 0,
+							x: +400,
+						})
+					: tl.from(elem, {
+							opacity: 0,
+							x: -400,
+						});
+			}
+		});
 	});
 };
 

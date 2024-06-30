@@ -5,13 +5,12 @@ import { ICard } from "../../lib/InterfacesAndEnum";
 
 const Card = forwardRef<HTMLDivElement, ICard>(
 	(
-		{ dark, title, listItems, Icon, HeadingIcons, secondListItems, id }: ICard,
+		{ dark, title, listItems, Icon, HeadingIcons, secondListItems }: ICard,
 		ref,
 	) => {
 		return (
 			<div
 				ref={ref}
-				id={id}
 				className={cn(
 					"rounded-lg w-full p-2 h-full bg-white border-2 border-black font-jetBrains",
 					dark && "bg-black border-white",
