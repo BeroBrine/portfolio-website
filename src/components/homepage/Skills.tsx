@@ -26,8 +26,10 @@ const Skills = () => {
 	];
 
 	const cardRefArr = useRef<HTMLDivElement[]>([]);
+	const iconRefArr = useRef<SVGSVGElement[]>([]);
 	const triggerDivRef = useRef<HTMLDivElement>(null);
-	useSkillPageAnim({ triggerDivRef, cardRefArr });
+	console.log(iconRefArr);
+	useSkillPageAnim({ triggerDivRef, cardRefArr, iconRefArr });
 
 	return (
 		<div>
@@ -74,7 +76,15 @@ const Skills = () => {
 								</span>
 								<div className="text-white flex flex-row">
 									{frameworkIcon.map((Elem) => {
-										return <Elem size={28} className="" />;
+										return (
+											<Elem
+												ref={(ref) => {
+													if (ref) iconRefArr.current.push(ref);
+												}}
+												size={28}
+												className=""
+											/>
+										);
 									})}
 								</div>
 							</div>
