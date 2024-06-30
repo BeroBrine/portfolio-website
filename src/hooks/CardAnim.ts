@@ -1,22 +1,23 @@
 import { gsap } from "gsap";
+import { cardTypes } from "../lib/InterfacesAndEnum";
 import { useGSAP } from "@gsap/react";
-import { ISkillsAnim, cardTypes } from "../lib/InterfacesAndEnum";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const useSkillPageAnim = ({
-	triggerDivRef,
-	cardRefArr,
-	iconRefArr,
-}: ISkillsAnim) => {
+const useCardAnimations = (
+	cardRefArr: React.MutableRefObject<HTMLDivElement[]>,
+	triggerDivRef: React.RefObject<HTMLDivElement>,
+) => {
 	gsap.registerPlugin(ScrollTrigger);
-	console.log(iconRefArr);
+
 	useGSAP(() => {
 		if (window.outerWidth > 768) {
 			cardRefArr.current.map((elem) => {
+				console.log(elem.id);
 				if (elem.id === cardTypes.langCard) {
+					console.log(elem.id);
 					gsap.from(elem, {
 						opacity: 0,
-						x: -200,
+						x: -400,
 						duration: 2,
 						scrollTrigger: {
 							trigger: triggerDivRef.current,
@@ -28,7 +29,7 @@ const useSkillPageAnim = ({
 				} else if (elem.id === cardTypes.frameworkCard) {
 					gsap.from(elem, {
 						opacity: 0,
-						x: +200,
+						x: +400,
 						duration: 2,
 						scrollTrigger: {
 							trigger: triggerDivRef.current,
@@ -40,7 +41,7 @@ const useSkillPageAnim = ({
 				} else if (elem.id === cardTypes.toolsCard) {
 					gsap.from(elem, {
 						opacity: 0,
-						x: -200,
+						x: -400,
 						duration: 5,
 						scrollTrigger: {
 							trigger: triggerDivRef.current,
@@ -52,7 +53,7 @@ const useSkillPageAnim = ({
 				} else if (elem.id === cardTypes.devopsCard) {
 					gsap.from(elem, {
 						opacity: 0,
-						y: -200,
+						y: -400,
 						duration: 2,
 						scrollTrigger: {
 							trigger: triggerDivRef.current,
@@ -67,4 +68,4 @@ const useSkillPageAnim = ({
 	});
 };
 
-export default useSkillPageAnim;
+export default useCardAnimations;

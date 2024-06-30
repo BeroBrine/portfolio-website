@@ -4,7 +4,7 @@ import { gsap } from "gsap/gsap-core";
 import { useRef, useState } from "react";
 
 const StringAnim = () => {
-	const [path, setPath] = useState<string>("");
+	const [path, setPath] = useState<string>("M 100 200 Q 800 200 1500 200");
 	const [out, setOut] = useState<boolean>(false);
 	const divRef = useRef<HTMLDivElement>(null);
 	const pathRef = useRef<SVGPathElement>(null);

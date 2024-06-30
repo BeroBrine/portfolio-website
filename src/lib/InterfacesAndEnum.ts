@@ -1,3 +1,5 @@
+import { RemixiconComponentType } from "@remixicon/react";
+
 export interface IRoute {
 	key: number;
 	path: string;
@@ -33,6 +35,16 @@ export interface ISkillsAnim {
 export interface IRefs {
 	reimageineRef: React.RefObject<HTMLDivElement>;
 	rebuildRef: React.RefObject<HTMLDivElement>;
+}
+
+export interface ICard {
+	dark?: boolean;
+	title: string;
+	id: string;
+	listItems: string[];
+	Icon?: RemixiconComponentType;
+	HeadingIcons?: RemixiconComponentType[];
+	secondListItems?: string[];
 }
 
 //enums

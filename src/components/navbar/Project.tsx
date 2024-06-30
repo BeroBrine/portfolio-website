@@ -12,6 +12,7 @@ const Project = () => {
 	const spanRef = useRef<HTMLSpanElement>(null);
 
 	const navigate = useNavigate();
+
 	const handleClick = () => {
 		window.open("https://github.com/BeroBrine/pawn.js", "_blank")?.focus();
 	};
