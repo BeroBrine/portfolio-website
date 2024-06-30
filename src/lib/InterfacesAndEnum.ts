@@ -27,13 +27,7 @@ export interface ICursor {
 export interface ISkillsAnim {
 	triggerDivRef: React.RefObject<HTMLDivElement>;
 	cardRefArr: React.MutableRefObject<HTMLDivElement[]>;
-}
-
-export enum cardTypes {
-	langCard = "langCard",
-	frameworkCard = "frameworkCard",
-	devopsCard = "devopsCard",
-	toolsCard = "toolsCard",
+	iconRefArr: React.MutableRefObject<SVGSVGElement[]>;
 }
 
 export interface IRefs {
@@ -41,4 +35,10 @@ export interface IRefs {
 	rebuildRef: React.RefObject<HTMLDivElement>;
 }
 
-export type TRefs = React.ForwardedRef<IRefs>;
+//enums
+export enum cardTypes {
+	langCard = "langCard",
+	frameworkCard = "frameworkCard",
+	devopsCard = "devopsCard",
+	toolsCard = "toolsCard",
+}

@@ -6,7 +6,6 @@ import { IRefs } from "../../lib/InterfacesAndEnum";
 const Quote = forwardRef<IRefs>(({}, ref) => {
 	const parentRef = useRef<HTMLDivElement>(null);
 	const childRef = useRef<HTMLDivElement>(null);
-
 	const reimagineRef = useRef<HTMLDivElement>(null);
 	const rebuildRef = useRef<HTMLDivElement>(null);
 

@@ -11,7 +11,6 @@ const Cursor = ({ refElem }: { refElem?: IRefs }) => {
 	const [divRender, setDivRender] = useState<boolean>(false);
 	const [cursorRender, setCursorRender] = useState<boolean>(false);
 
-	console.log(refElem);
 	useCursorAnim({
 		cursorRef,
 		textRef,

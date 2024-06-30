@@ -16,6 +16,7 @@ const HomePage = () => {
 	const parentDiv = useRef<HTMLDivElement>(null);
 
 	const refObj = useRef<IRefs>(null);
+
 	//@ts-ignore // to shut up ts to not complaint about rerender not being used
 	const [rerender, setRerender] = useState<boolean>(false);
 	// this re-render is neccessary because the ref does not initialize on initial render. probably something to do with useImperativeHandle hook
@@ -86,26 +87,23 @@ const HomePage = () => {
 					</div>
 				</Magnetic>
 			</div>
-			{
-				// <div className="h-12 w-screen  p-2 flex flex-col justify-center items-center bg-black text-white">
-				// 	<span className="font-jetBrains font-semibold text-white">
-				// 		{"Made With Love By Abhishek"}
-				// 	</span>
-				//
-				// 	<span className="font-jetBrains font-semibold text-white">
-				// 		{"Built Using React, GSAP, Framer"}
-				// 	</span>
-				// </div>
-			}
 			<Quote ref={refObj} />
 			<StringAnim />
 			<Skills />
-
 			{window.outerWidth > 768 && refObj.current ? (
 				<Cursor refElem={refObj.current} />
 			) : (
 				<div></div>
 			)}
+			<div className="h-12 w-screen  p-2 flex flex-col justify-center items-center bg-black text-white">
+				<span className="font-jetBrains font-semibold text-white">
+					{"Made With Love By Abhishek"}
+				</span>
+
+				<span className="font-jetBrains font-semibold text-white">
+					{"Built Using React, GSAP, Framer"}
+				</span>
+			</div>
 		</div>
 	);
 };

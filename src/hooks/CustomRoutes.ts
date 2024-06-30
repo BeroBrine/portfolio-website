@@ -1,4 +1,4 @@
-import { IRoute } from "./InterfacesAndEnum";
+import { IRoute } from "../lib/InterfacesAndEnum";
 import { Project, Linux } from "../components/navbar/index";
 import { HomePage } from "../components";
 
