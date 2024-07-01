@@ -1,16 +1,38 @@
 import { RiArrowRightSLine } from "@remixicon/react";
 import { cn } from "../../lib/utils";
-import { forwardRef } from "react";
-import { ICard } from "../../lib/InterfacesAndEnum";
+import { forwardRef, useImperativeHandle } from "react";
+import { ICard, ICardRefs } from "../../lib/InterfacesAndEnum";
 
-const Card = forwardRef<HTMLDivElement, ICard>(
+const Card = forwardRef<ICardRefs, ICard>(
 	(
-		{ dark, title, listItems, Icon, HeadingIcons, secondListItems }: ICard,
+		{
+			dark,
+			title,
+			listItems,
+			Icon,
+			HeadingIcons,
+			secondListItems,
+			cardRef,
+			iconRef,
+		}: ICard,
 		ref,
 	) => {
+		useImperativeHandle(
+			ref,
+			() => {
+				return {
+					cardRef: cardRef,
+					iconRefArr: iconRef,
+				};
+			},
+			[],
+		);
+
 		return (
 			<div
-				ref={ref}
+				ref={(ref) => {
+					if (ref) cardRef.current.push(ref);
+				}}
 				className={cn(
 					"rounded-lg w-full p-2 h-full bg-white border-2 border-black font-jetBrains",
 					dark && "bg-black border-white",
@@ -27,8 +49,15 @@ const Card = forwardRef<HTMLDivElement, ICard>(
 
 						{HeadingIcons && (
 							<div className="flex">
-								{HeadingIcons.map((Icn) => (
-									<Icn size={32} />
+								{HeadingIcons.map((Icn, i) => (
+									<div
+										key={i}
+										ref={(thisRef) => {
+											if (thisRef) iconRef.current.push(thisRef);
+										}}
+									>
+										<Icn size={32} />
+									</div>
 								))}
 							</div>
 						)}

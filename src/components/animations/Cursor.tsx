@@ -2,9 +2,9 @@ import { useRef, useState } from "react";
 import { IPosition } from "../../lib//InterfacesAndEnum";
 import imgSrc from "../../assets/altinay-dinc-LluELtL5mK4-unsplash.jpg";
 import useCursorAnim from "../../hooks/CursorAnim";
-import { IRefs } from "../../lib/InterfacesAndEnum";
+import { ISkillsRefs } from "../../lib/InterfacesAndEnum";
 
-const Cursor = ({ refElem }: { refElem?: IRefs }) => {
+const Cursor = ({ refElem }: { refElem?: ISkillsRefs }) => {
 	const cursorRef = useRef<HTMLDivElement>(null);
 	const textRef = useRef<HTMLDivElement>(null);
 	const mousePos: IPosition = { x: 0, y: 0 };

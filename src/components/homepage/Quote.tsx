@@ -1,18 +1,22 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { forwardRef, useImperativeHandle, useRef } from "react";
-import { IRefs } from "../../lib/InterfacesAndEnum";
+import { ISkillsRefs } from "../../lib/InterfacesAndEnum";
 
-const Quote = forwardRef<IRefs>(({}, ref) => {
+const Quote = forwardRef<ISkillsRefs>(({}, ref) => {
 	const parentRef = useRef<HTMLDivElement>(null);
 	const childRef = useRef<HTMLDivElement>(null);
 	const reimagineRef = useRef<HTMLDivElement>(null);
 	const rebuildRef = useRef<HTMLDivElement>(null);
 
-	useImperativeHandle(ref, () => ({
-		reimageineRef: reimagineRef,
-		rebuildRef: rebuildRef,
-	}));
+	useImperativeHandle(
+		ref,
+		() => ({
+			reimageineRef: reimagineRef,
+			rebuildRef: rebuildRef,
+		}),
+		[],
+	);
 
 	useGSAP(() => {
 		gsap.from(reimagineRef.current, {

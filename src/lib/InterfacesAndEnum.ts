@@ -23,7 +23,7 @@ export interface ICursor {
 	mousePos: IPosition;
 	setDivRender: React.Dispatch<React.SetStateAction<boolean>>;
 	setCursorRender: React.Dispatch<React.SetStateAction<boolean>>;
-	refElem?: IRefs;
+	refElem?: ISkillsRefs;
 }
 
 export interface ISkillsAnim {
@@ -32,18 +32,26 @@ export interface ISkillsAnim {
 	iconRefArr: React.MutableRefObject<SVGSVGElement[]>;
 }
 
-export interface IRefs {
+export interface ISkillsRefs {
 	reimageineRef: React.RefObject<HTMLDivElement>;
 	rebuildRef: React.RefObject<HTMLDivElement>;
 }
 
+export type ICardRefs = {
+	cardRef: React.MutableRefObject<HTMLDivElement[]>;
+	iconRefArr: React.MutableRefObject<HTMLDivElement[]>;
+};
+
 export interface ICard {
 	dark?: boolean;
+	frameworkCard?: boolean;
 	title: string;
 	listItems: string[];
 	Icon?: RemixiconComponentType;
 	HeadingIcons?: RemixiconComponentType[];
 	secondListItems?: string[];
+	cardRef: React.MutableRefObject<HTMLDivElement[]>;
+	iconRef: React.MutableRefObject<HTMLDivElement[]>;
 }
 
 //enums

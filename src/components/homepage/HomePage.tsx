@@ -8,14 +8,14 @@ import Skills from "./Skills";
 import Magnetic from "../animations/Magnetic";
 import Cursor from "../animations/Cursor";
 import StringAnim from "../animations/StringAnim";
-import { IRefs } from "../../lib/InterfacesAndEnum";
+import { ISkillsRefs } from "../../lib/InterfacesAndEnum";
 import Quote from "./Quote";
 
 const HomePage = () => {
 	const textDiv = useRef<HTMLDivElement>(null);
 	const parentDiv = useRef<HTMLDivElement>(null);
 
-	const refObj = useRef<IRefs>(null);
+	const refObj = useRef<ISkillsRefs>(null);
 
 	//@ts-ignore // to shut up ts to not complaint about rerender not being used
 	const [rerender, setRerender] = useState<boolean>(false);
