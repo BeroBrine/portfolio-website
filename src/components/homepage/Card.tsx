@@ -40,7 +40,7 @@ const Card = forwardRef<ICardRefs, ICard>(
 			>
 				<div
 					className={cn(
-						"rounded-lg p-4 w-full h-full bg-white border-2 border-black",
+						"rounded-lg p-1 w-full h-full bg-white border-2 border-black",
 						dark && "bg-black border-white text-white",
 					)}
 				>
@@ -73,7 +73,9 @@ const Card = forwardRef<ICardRefs, ICard>(
 						</ul>
 						<div className="w-1/2 h-[calc(100%-40px)] relative">
 							{Icon ? (
-								<Icon className="absolute size-14 lg:size-24 top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2" />
+								<div>
+									<Icon className="absolute size-14 lg:size-24 top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2" />
+								</div>
 							) : (
 								secondListItems && (
 									<ul>

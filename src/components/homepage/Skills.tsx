@@ -12,8 +12,10 @@ import Card from "./Card";
 import { ICardRefs } from "../../lib/InterfacesAndEnum";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Skills = () => {
+	gsap.registerPlugin(ScrollTrigger);
 	const langArr = ["Typescript", "Javascript", "Java", "Bash"];
 	const frameworkArr1 = ["React", "Recoil", "Node.js", "Express.js", "GSAP"];
 	const frameworkArr2 = ["MongoDB", "PostgreSQL", "Hono.js", "WebSockets"];
@@ -29,50 +31,38 @@ const Skills = () => {
 
 	useGSAP(() => {
 		console.log(refObj.current?.iconRefArr);
-		refObj.current?.cardRef?.current.map((elem, i) => {
-			if (window.outerWidth > 768) {
-				const tl = gsap.timeline({
-					scrollTrigger: {
-						trigger: triggerDivRef.current,
-						end: "6%",
-						scrub: 2,
-					},
-				});
-
-				i % 2
-					? tl.from(elem, {
-							opacity: 0,
-							x: +400,
-						})
-					: tl.from(elem, {
+		const refArr = refObj.current?.cardRef.current;
+		if (!refArr) return;
+		refObj.current?.cardRef.current.forEach(({}, i) => {
+			ScrollTrigger.batch([refArr[i]], {
+				onEnter: (batch) => {
+					if (i == 0 || i == 2) {
+						gsap.from(batch, {
 							opacity: 0,
 							x: -400,
-						});
-			} else {
-				const tl = gsap.timeline({
-					scrollTrigger: {
-						trigger: triggerDivRef.current,
-						end: "6%",
-						scrub: true,
-					},
-				});
+							duration: 1,
 
-				i % 2
-					? tl.from(elem, {
+							stagger: {
+								amount: 5,
+								grid: "auto",
+							},
+						});
+					} else {
+						gsap.from(batch, {
 							opacity: 0,
 							x: +400,
-						})
-					: tl.from(elem, {
-							opacity: 0,
-							x: -400,
+							duration: 1,
+							stagger: {
+								amount: 5,
+								grid: "auto",
+							},
 						});
-			}
+					}
+				},
+			});
 		});
+	});
 
-		// refObj.current?.iconRefArr?.current.map((elem, i) => {
-		//     if(window.outerWidth )
-		//   });
-	}, []);
 	return (
 		<div>
 			<div

@@ -4,14 +4,14 @@ import { gsap } from "gsap/gsap-core";
 import { useRef, useState } from "react";
 
 const StringAnim = () => {
-	const [path, setPath] = useState<string>("M 100 200 Q 800 200 1500 200");
+	const [path, setPath] = useState<string>("M 50 200 Q 800 200 1350 200");
 	const [out, setOut] = useState<boolean>(false);
 	const divRef = useRef<HTMLDivElement>(null);
 	const pathRef = useRef<SVGPathElement>(null);
 
 	const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
 		setPath(
-			`M 100 200 Q ${Math.floor(e.clientX)} ${Math.floor(e.clientY)} 1500 200`,
+			`M 50 200 Q ${Math.floor(e.clientX)} ${Math.floor(e.clientY)} 1350 200`,
 		);
 		setOut(false);
 	};
@@ -37,7 +37,7 @@ const StringAnim = () => {
 	}, [path, out]);
 
 	const handleMouseLeave = () => {
-		setPath("M 100 200 Q 800 200 1500 200");
+		setPath("M 50 200 Q 800 200 1350 200");
 		setOut(true);
 	};
 
@@ -56,7 +56,7 @@ const StringAnim = () => {
 				<svg width="1600" height="400" className="">
 					<path
 						ref={pathRef}
-						d={"M 100 200 Q 800 200 1500 200"}
+						d={"M 50 200 Q 800 200 1350 200"}
 						stroke="white"
 						fill="transparent"
 					/>
